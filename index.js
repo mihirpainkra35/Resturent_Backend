@@ -3,10 +3,10 @@ require('dotenv').config()
 const express = require('express');
 
 // routes import
-const routes = require('./router/routes.js')
+// const routes = require('./router/routes.js')
 
 // db connection import
-// require('./DB/conn.js')
+require('./DB/conn.js')
 
 const app = express();
 
