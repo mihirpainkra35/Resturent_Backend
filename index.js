@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 
 // routes import
-// const router = require('./router/routes');
+const router = require('./router/routes');
 
 
 // db connection import
@@ -18,7 +18,7 @@ const port = process.env.PORT || 3000;
 
 // middleware       
 app.use(express.json());
-// app.use('/resturent',router)
+app.use('/resturent',router)
 
 app.get('/',(req,res)=>{
 res.send('hello world');

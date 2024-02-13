@@ -11,7 +11,7 @@ const router = express.Router();
 router.route('/user').get((req,res)=>{res.status(201).send('get user data')})
 
 // POST Request
-// router.route('/user/generateOTP').post(UserOTPGeneration)
+router.route('/user/generateOTP').post(UserOTPGeneration)
 router.route('/user/verifyOTP').post(UserOTPVerification)
 
 // PUT Request

@@ -3,7 +3,7 @@ require('dotenv').config()
 const mongoose = require('mongoose');
 
 // url for mongodb
-const url = 'mongodb://127.0.0.1:27017/Resturent_DB'
+const url = process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/Resturent_DB'
 
 
 
