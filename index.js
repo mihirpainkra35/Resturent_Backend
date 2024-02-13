@@ -6,7 +6,7 @@ const express = require('express');
 // const routes = require('./router/routes.js')
 
 // db connection import
-require('./DB/conn.js')
+// require('./DB/conn.js')
 
 const app = express();
 
