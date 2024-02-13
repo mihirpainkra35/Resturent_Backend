@@ -7,8 +7,10 @@ const router = require('./router/routes');
 
 
 // db connection import
-require('./DB/conn');
+const connectDB = require('./DB/conn');
 
+//connect to DB 
+connectDB();
 
 const app = express();
 
