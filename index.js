@@ -19,7 +19,7 @@ app.use(express.json());
 app.use('/resturent',routes)
 
 app.get('/',(req,res)=>{
-res.send('hello world');
+res.json({message:'hello world'});
 });
 
 app.listen(port,()=>{
