@@ -8,7 +8,7 @@ const express = require('express');
 const router = express.Router();
 
 // GET Request
-// router.route('/user').get((req,res)=>{res.status(201).send('get user data')})
+router.route('/user').get((req,res)=>{res.status(201).send('get user data')})
 
 // POST Request
 // router.route('/user/generateOTP').post(UserOTPGeneration)

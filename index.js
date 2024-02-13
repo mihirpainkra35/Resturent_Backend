@@ -4,7 +4,7 @@ const express = require('express');
 
 // routes import
 const router = require('./router/routes');
-// import routes from('./router/routes');
+
 
 // db connection import
 // require('./DB/conn');
