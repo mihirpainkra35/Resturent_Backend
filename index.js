@@ -1,3 +1,4 @@
+require('dotenv').config()
 // lib's import
 const express = require('express');
 
@@ -10,7 +11,7 @@ require('./DB/conn.js')
 const app = express();
 
 // port
-const port = 8080 
+const port = process.env.PORT || 3000; 
 
 
 // middleware
@@ -23,4 +24,5 @@ res.send('hello world');
 
 app.listen(port,()=>{
     console.log(`your server running on ${port}`)
+    
 })
