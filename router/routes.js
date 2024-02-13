@@ -2,7 +2,7 @@
 const express = require('express');
 
 
-// const {UserOTPGeneration} = require('../controller/UserControl.module.js') 
+const {UserOTPGeneration} = require('../controller/UserControl.module.js') 
 const {UserOTPVerification} = require('../controller/UserControl.module.js') 
 
 const router = express.Router();
