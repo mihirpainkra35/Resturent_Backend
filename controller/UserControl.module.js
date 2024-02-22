@@ -10,44 +10,39 @@ const fromNumber = process.env.FROMPHONENUMBER;
 const client = new twilio(AccountSID, AuthToken);
 
 //OTP GENERATOR function
-const generateOTP = () => {
-    return Math.floor(100000 + Math.random() * 900000);
-}
+// const generateOTP = () => {
+//     return Math.floor(100000 + Math.random() * 900000);
+// }
 
 //generate and send otp
 const UserOTPGeneration = async (req, res) => {
     try {
 
-        const { User_Phone_number, Visiting_count } = req.body;
+        const User_Phone_number = req.params.pNumber;
+        
         let result;
-        let otp = generateOTP();
+        // let otp = generateOTP();
         let data = await UserModal.findOne({ User_Phone_number })
+       
         if (data) {
-
-            let data = await UserModal.updateOne({ User_Phone_number }, { $set: { OTP: otp, Visiting_count: Visiting_count + 1 } })
+            let Visiting_count = data.Visiting_count;
+            let updatedData = await UserModal.updateOne({ User_Phone_number }, { $set: { Visiting_count: Visiting_count + 1 } })
             let newdata = await UserModal.findOne({ User_Phone_number })
-
-            client.messages
-                .create({
-                    body: 'Welcoming you please use this OTP ' + otp,
-                    to: `+91${User_Phone_number}`, // Text your number
-                    from: fromNumber, // From a valid Twilio number
-                })
-                .then(() => console.log("OTP send successfull"));
             res.status(200).send("OTP sended" + newdata);
 
         } else {
-            data = UserModal({ User_Phone_number, Visiting_count, OTP: otp })
+            let Visiting_count = 1;
+            data = UserModal({ User_Phone_number, Visiting_count})
             result = await data.save();
             console.log(result);
-            client.messages
-                .create({
-                    body: 'Welcoming you please use this OTP ' + otp,
-                    to: `+91${User_Phone_number}`, // Text your number
-                    from: fromNumber, // From a valid Twilio number
-                })
-                .then(() => console.log("OTP send successfull"));
-            res.status(200).send("OTP sended" + data);
+            // client.messages
+        //     //     .create({
+        //     //         body: 'Welcoming you please use this OTP ' + otp,
+        //     //         to: `+91${User_Phone_number}`, // Text your number
+        //     //         from: fromNumber, // From a valid Twilio number
+        //     //     })
+        //     //     .then(() => console.log("OTP send successfull"));
+            res.status(200).send("OTP sended" );
 
         }
 
