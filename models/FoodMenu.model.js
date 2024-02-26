@@ -1,15 +1,11 @@
 const mongoose = require('mongoose');
 
 const MenuSchema = new mongoose.Schema({
-    itemName: Number,
+    itemName: String,
     price: Number,
-    discount: Number,
+    rating: Number,
     category: String,
-    Image_info: {
-        Image_url: String,
-        Image_mimetype: String,
-        filename:String
-    },
+    Image_url: String,
     qunatity: Number
 })
 

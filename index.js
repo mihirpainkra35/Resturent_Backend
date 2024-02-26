@@ -4,7 +4,7 @@ const express = require('express');
 
 // routes import
 const router = require('./router/routes');
-
+const menurouter = require('./router/menu')
 
 // db connection import
  require('./DB/conn');
@@ -20,7 +20,8 @@ const port = process.env.PORT || 3000;
 
 // middleware       
 app.use(express.json());
-app.use('/resturent',router)
+app.use('/resturent',router);
+app.use('/dawat',menurouter);
 
 app.get('/',(req,res)=>{
 res.send('hello world');
