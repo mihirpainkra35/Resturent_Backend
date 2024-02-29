@@ -41,4 +41,31 @@ const ShowMenu = async (req, res) => {
     }
 }
 
-module.exports = {  ShowMenu }
+const handleSearch = async (req, res) => {
+
+    let item = req.query.searchItem;
+    if(item){
+        let data = await MenuModel.find(
+            {
+                "$or": [
+                    { itemName: { $regex: item, $options: 'i' } }
+                ]
+            }
+        );
+    
+        if (data.length>0) {
+    
+            res.send(data);
+        } else {
+          
+            res.json({result:"no such data found"})
+    
+        }
+    }else{
+        res.json({result:'please enter something to search'})
+    }
+    
+
+}
+
+module.exports = { ShowMenu, handleSearch }
