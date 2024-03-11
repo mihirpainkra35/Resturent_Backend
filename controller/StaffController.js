@@ -3,6 +3,7 @@ const MenuModel = require('../models/FoodMenu.model');
 const admin = require("firebase-admin");
 const uuid = require("uuid-v4");
 
+const {privateKey} = JSON.parse(process.env.private_key);
 
 
 // firebase admin intialization
@@ -11,7 +12,7 @@ admin.initializeApp({
         type: "service_account",
         project_id: process.env.project_id,
         private_key_id: process.env.private_key_id,
-        private_key: process.env.private_key,
+        private_key: privateKey,
         client_email: process.env.client_email,
         client_id: process.env.client_id,
         auth_uri: process.env.auth_uri,
