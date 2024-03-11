@@ -29,7 +29,6 @@ const MenuModel = require('../models/FoodMenu.model');
 //     }
 
 // };
-
 const ShowMenu = async (req, res) => {
 
     try {
@@ -41,10 +40,24 @@ const ShowMenu = async (req, res) => {
     }
 }
 
+// controller for item by category
+const ShowItemsByCategory = async (req, res) => {
+    const itemByCategory = await MenuModel.aggregate([{
+        $group: {
+            _id: {$toLower:"$category"},
+            items: { $push: "$$ROOT" }
+        }
+    }]);
+    res.send(itemByCategory);
+}
+
+
+
+// controller for searching items
 const handleSearch = async (req, res) => {
 
     let item = req.query.searchItem;
-    if(item){
+    if (item) {
         let data = await MenuModel.find(
             {
                 "$or": [
@@ -52,20 +65,20 @@ const handleSearch = async (req, res) => {
                 ]
             }
         );
-    
-        if (data.length>0) {
-    
+
+        if (data.length > 0) {
+
             res.send(data);
         } else {
-          
-            res.json({result:"no such data found"})
-    
+
+            res.json({ result: "no such data found" })
+
         }
-    }else{
-        res.json({result:'please enter something to search'})
+    } else {
+        res.json({ result: 'please enter something to search' })
     }
-    
+
 
 }
 
-module.exports = { ShowMenu, handleSearch }
+module.exports = { ShowMenu, handleSearch,ShowItemsByCategory }

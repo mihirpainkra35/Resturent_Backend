@@ -2,13 +2,15 @@
 const express = require('express');
 
 
-const {ShowMenu,handleSearch} = require('../controller/MenuControl.module.js');
+const {ShowMenu,handleSearch,ShowItemsByCategory} = require('../controller/MenuControl.module.js');
 
 const menurouter = express.Router();
 
 // GET Request
 menurouter.route('/menu').get(ShowMenu);
 menurouter.route('/menu/search').get(handleSearch);
+menurouter.route('/menu/itemByCategory').get(ShowItemsByCategory);
+
 
 
 
