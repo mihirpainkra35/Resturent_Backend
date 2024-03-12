@@ -9,7 +9,7 @@ const router = express.Router();
 
 // GET Request
 // router.route('/user').get((req,res)=>{res.status(201).send('get user data')})
-router.route('/user/:pNumber').get(UserOTPGeneration)
+router.route('/user').get(UserOTPGeneration)
 
 // POST Request
 // router.route('/user/generateOTP').post(UserOTPGeneration)

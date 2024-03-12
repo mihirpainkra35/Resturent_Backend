@@ -18,7 +18,8 @@ const client = new twilio(AccountSID, AuthToken);
 const UserOTPGeneration = async (req, res) => {
     try {
 
-        const User_Phone_number = req.params.pNumber;
+        const User_Phone_number = req.query.pNumber;
+        
         
         let result;
         // let otp = generateOTP();
@@ -34,7 +35,7 @@ const UserOTPGeneration = async (req, res) => {
             let Visiting_count = 1;
             data = UserModal({ User_Phone_number, Visiting_count})
             result = await data.save();
-            console.log(result);
+            // console.log(result);
             // client.messages
         //     //     .create({
         //     //         body: 'Welcoming you please use this OTP ' + otp,

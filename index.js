@@ -20,9 +20,9 @@ const port = process.env.PORT || 3000;
 
 // middleware       
 app.use(express.json());
-app.use('/resturent',router);
+app.use('/dawat',router);
 app.use('/dawat',menurouter);
-app.use('/staff',Staffrouter)
+app.use('/dawat',Staffrouter)
 
 app.get('/',(req,res)=>{
 res.send('hello world');
