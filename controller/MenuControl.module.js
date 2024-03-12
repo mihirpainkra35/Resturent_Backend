@@ -33,7 +33,7 @@ const ShowMenu = async (req, res) => {
 
     try {
         const data = await MenuModel.find()
-        console.log(data);
+
        
         res.json({
             status:"success",
