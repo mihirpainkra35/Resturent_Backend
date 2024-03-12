@@ -9,4 +9,4 @@ const MenuSchema = new mongoose.Schema({
     qunatity: Number
 })
 
-module.exports = mongoose.model('menus', MenuSchema);
+module.exports = mongoose.model('Todays_Special_menu', MenuSchema);

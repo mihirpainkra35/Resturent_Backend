@@ -33,7 +33,15 @@ const ShowMenu = async (req, res) => {
 
     try {
         const data = await MenuModel.find()
-        res.send(data);
+        console.log(data);
+       
+        res.json({
+            status:"success",
+            status_code:200,
+            message:"Today's special data fetched",
+            data
+        });
+
 
     } catch (error) {
         console.log(error);
