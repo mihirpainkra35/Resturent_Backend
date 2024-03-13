@@ -76,14 +76,30 @@ const handleSearch = async (req, res) => {
 
         if (data.length > 0) {
 
-            res.send(data);
+            res.json({
+                status:"success",
+                status_code:200,
+                message:"searched item fetched",
+                data
+            });
         } else {
-
-            res.json({ result: "no such data found" })
+            res.json({
+                status:"success",
+                status_code:200,
+                result: "no such data found" ,
+                
+            });
+     
 
         }
     } else {
-        res.json({ result: 'please enter something to search' })
+        res.json({
+            status:"success",
+            status_code:200,
+            result: "please enter something to search" ,
+            
+        });
+ 
     }
 
 
