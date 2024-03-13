@@ -3,7 +3,7 @@ const CategorySchema = require("../models/CategoryMenu.model");
 const ShowCategory = async(req, res) => {
 
     try {
-        const data = await CategorySchema.find();
+        const data = await CategorySchema.find().sort({category:1});
         res.status(200).json({
             status:"success",
             status_code:200,

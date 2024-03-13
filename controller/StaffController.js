@@ -1,4 +1,4 @@
-const MenuModel = require('../models/FoodMenu.model');
+const MenuModel = require('../models/TodaysSpecialMenu.model');
 
 const admin = require("firebase-admin");
 const uuid = require("uuid-v4");

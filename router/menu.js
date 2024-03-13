@@ -4,11 +4,12 @@ const express = require('express');
 
 const {ShowMenu,handleSearch,ShowItemsByCategory} = require('../controller/MenuControl.module.js');
 const {ShowCategory} = require("../controller/categoryController.js");
+const {ShowTodaysSpecialMenu} = require("../controller/todaysSpecialMenuController.js")
 
 const menurouter = express.Router();
 
 // GET Request
-menurouter.route('/TodaysSpecialMenu').get(ShowMenu);
+menurouter.route('/TodaysSpecialMenu').get(ShowTodaysSpecialMenu);
 menurouter.route('/menu/search').get(handleSearch);
 menurouter.route('/menu/itemByCategory').get(ShowItemsByCategory);
 menurouter.route('/menu/ByCategory').get(ShowCategory);
