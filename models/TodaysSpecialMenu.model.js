@@ -6,7 +6,7 @@ const TodaysSpecialMenuSchema = new mongoose.Schema({
     rating: Number,
     category: String,
     Image_url: String,
-    qunatity: Number
+    quantity: Number
 })
 
 
