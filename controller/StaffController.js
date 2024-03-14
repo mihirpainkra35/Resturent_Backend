@@ -1,9 +1,10 @@
-const MenuModel = require('../models/TodaysSpecialMenu.model');
+// const MenuModel = require('../models/TodaysSpecialMenu.model');
+const MenuModel = require('../models/menu.model.js');
 
 const admin = require("firebase-admin");
 const uuid = require("uuid-v4");
 
-const {privateKey} = JSON.parse(process.env.private_key);
+const { privateKey } = JSON.parse(process.env.private_key);
 
 
 // firebase admin intialization
@@ -29,9 +30,13 @@ admin.initializeApp({
 const bucket = admin.storage().bucket();
 
 //function to handle addition of new menu with there image in firebase
-const AddMenu = (req, res) => {
-// console.log(req.body.name)
-    const fileOName = req.body.name;
+const AddMenu =  (req, res) => {
+    
+  const price = parseInt(req.body.price);
+  const rating = parseInt(req.body.rating);
+  const quantity = parseInt(req.body.quantity);
+
+    const fileOName = req.body.itemName;
     const splitname = req.file.originalname.split(".")
     let SpaceName = fileOName.replace(/\s/g, "");
     const now = new Date();
@@ -70,11 +75,21 @@ const AddMenu = (req, res) => {
     });
 
     blobStream.on("finish", async () => {
-        const imageUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${folderName}%2F${NewName}?alt=media&token=${token}`;
+        const Image_Url = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${folderName}%2F${NewName}?alt=media&token=${token}`;
 
+    const data =  MenuModel({
+        itemName: req.body.itemName,
+        price,
+        rating,
+        category: req.body.category,
+        Image_Url,
+        quantity
+    })
+    const result = await data.save();
 
-        return res.status(200).json({ imageUrl });
-        // return res.status(200).send("file recevied");
+    console.log(result);
+    return res.status(200).json("file added");
+    // return res.status(200).send("file recevied");
 
     })
     blobStream.end(req.file.buffer);
