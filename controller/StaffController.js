@@ -88,12 +88,19 @@ const AddMenu =  (req, res) => {
     const result = await data.save();
 
     console.log(result);
-    return res.status(200).json("file added");
+    return res.status(200).json({
+        status: "success",
+        status_code: 200,
+        message: "item added",
+        result
+    });
     // return res.status(200).send("file recevied");
 
     })
     blobStream.end(req.file.buffer);
 
 }
+
+    
 
 module.exports = { AddMenu };
