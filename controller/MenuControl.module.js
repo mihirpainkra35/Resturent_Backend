@@ -1,20 +1,21 @@
 const MenuModel = require('../models/menu.model');
-
+const CategorySchema = require('../models/CategoryMenu.model.js');
 
 
 // controller for item by category
 const ShowItemsByCategory = async (req, res) => {
-    const itemByCategory = await MenuModel.aggregate([
-        {
-            $group: {
-                _id: { $toLower: "$category" },
-                items: { $push: "$$ROOT" }
-            },
+    const category = await CategorySchema.findById(req.query.id);
+    let categoryName = category.category;
+    console.log(categoryName);
+    const data = await MenuModel.find({category: { $regex: new RegExp(categoryName, 'i') }});
+   
 
-        },
-
-    ]);
-    res.send(itemByCategory);
+    res.json({
+        status: "success",
+        status_code: 200,
+        message: "item fetched by id",
+        data
+    });
 }
 
 
