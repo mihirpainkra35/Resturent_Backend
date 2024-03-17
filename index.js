@@ -6,6 +6,7 @@ const express = require('express');
 const router = require('./router/routes');
 const menurouter = require('./router/menu')
 const Staffrouter = require('./router/StaffRoutes')
+const orderRoute = require('./router/order');
 
 // db connection import
  require('./DB/conn');
@@ -22,7 +23,8 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use('/dawat',router);
 app.use('/dawat',menurouter);
-app.use('/dawat',Staffrouter)
+app.use('/dawat',Staffrouter);
+app.use('/dawat',orderRoute);
 
 app.get('/',(req,res)=>{
 res.send('hello world');

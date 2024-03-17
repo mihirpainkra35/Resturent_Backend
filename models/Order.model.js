@@ -1,16 +1,7 @@
 const mongoose = require('mongoose');
 
-const OrderSchema = new mongoose.Schema({
- customer_id:String,
- itemsOrdered:{
-    itemName:String,
-    qunatity:Number,
-    price:Number,
-    item_id:String
- },
- foodStatus:String,
- totalPrice:Number,
+const OrderSchema = new mongoose.Schema({}, { strict: false })
 
-})
+// const OrderModel = mongoose.model('Order', );
 
-module.exports = mongoose.model('Order', OrderSchema);
+module.exports = mongoose.model('Order', OrderSchema);;
