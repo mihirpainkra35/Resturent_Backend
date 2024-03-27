@@ -7,12 +7,13 @@ const ShowItemsByCategory = async (req, res) => {
     const category = await CategorySchema.findById(req.query.id);
     let categoryName = category.category;
     const data = await MenuModel.find({ category: { $regex: new RegExp(categoryName, 'i') } });
-    const size = data.length + 1;
+    const size = data.length ;
     
     res.json({
         status: "success",
         status_code: 200,
         message: "item fetched by id",
+        categoryName,
         size,
         data
     });
@@ -24,7 +25,9 @@ const ShowItemsByCategory = async (req, res) => {
 const handleSearch = async (req, res) => {
 
     let item = req.query.searchItem;
+    // console.log(item)    
     if (item) {
+        // let data = await MenuModel.find({itemName:item});
         let data = await MenuModel.find(
             {
                 "$or": [
@@ -36,15 +39,15 @@ const handleSearch = async (req, res) => {
         if (data.length > 0) {
 
             res.json({
-                status: "success",
-                status_code: 200,
+                status: "failed",
+                status_code: 400,
                 message: "searched item fetched",
                 data
             });
         } else {
             res.json({
-                status: "success",
-                status_code: 200,
+                status: "failed",
+                status_code: 400,
                 result: "no such data found",
 
             });
