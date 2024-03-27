@@ -6,7 +6,8 @@ const MenuSchema = new mongoose.Schema({
    rating:Number,
    category:String,
    Image_Url:String,
-   quantity:Number
+   quantity:Number,
+   description:String
 })
 
 module.exports = mongoose.model('menus', MenuSchema);

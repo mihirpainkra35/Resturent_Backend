@@ -12,8 +12,12 @@ const orderRoute = require('./router/order');
  require('./DB/conn');
 
 
+ const app = express();
 
-const app = express();
+//  middleware
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 
 // port
 const port = process.env.PORT || 3000; 

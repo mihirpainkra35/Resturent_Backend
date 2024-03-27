@@ -6,14 +6,14 @@ const CategorySchema = require('../models/CategoryMenu.model.js');
 const ShowItemsByCategory = async (req, res) => {
     const category = await CategorySchema.findById(req.query.id);
     let categoryName = category.category;
-    console.log(categoryName);
-    const data = await MenuModel.find({category: { $regex: new RegExp(categoryName, 'i') }});
-   
-
+    const data = await MenuModel.find({ category: { $regex: new RegExp(categoryName, 'i') } });
+    const size = data.length + 1;
+    
     res.json({
         status: "success",
         status_code: 200,
         message: "item fetched by id",
+        size,
         data
     });
 }
