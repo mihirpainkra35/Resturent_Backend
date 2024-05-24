@@ -2,7 +2,7 @@
 const express = require('express');
 
 
-const {ShowMenu,handleSearch,ShowItemsByCategory} = require('../controller/MenuControl.module.js');
+const {handleSearch,ShowItemsByCategory} = require('../controller/MenuControl.module.js');
 const {ShowCategory} = require("../controller/categoryController.js");
 const {ShowTodaysSpecialMenu} = require("../controller/todaysSpecialMenuController.js")
 

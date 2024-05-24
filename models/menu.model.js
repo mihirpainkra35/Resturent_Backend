@@ -5,7 +5,7 @@ const MenuSchema = new mongoose.Schema({
    price:Number,
    rating:Number,
    category:String,
-   Image_Url:String,
+   Image_url:String,
    quantity:Number,
    description:String
 })

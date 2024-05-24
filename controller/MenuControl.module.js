@@ -1,4 +1,4 @@
-const MenuModel = require('../models/menu.model');
+const MenuModel = require('../models/menu.model.js');
 const CategorySchema = require('../models/CategoryMenu.model.js');
 
 
@@ -25,9 +25,8 @@ const ShowItemsByCategory = async (req, res) => {
 const handleSearch = async (req, res) => {
 
     let item = req.query.searchItem;
-    // console.log(item)    
+    console.log(item)    
     if (item) {
-        // let data = await MenuModel.find({itemName:item});
         let data = await MenuModel.find(
             {
                 "$or": [
@@ -35,12 +34,13 @@ const handleSearch = async (req, res) => {
                 ]
             }
         );
+       
 
         if (data.length > 0) {
 
             res.json({
-                status: "failed",
-                status_code: 400,
+                status: "sucess",
+                status_code: 200,
                 message: "searched item fetched",
                 data
             });
@@ -48,7 +48,7 @@ const handleSearch = async (req, res) => {
             res.json({
                 status: "failed",
                 status_code: 400,
-                result: "no such data found",
+                message: "no such data found",
 
             });
 
@@ -58,7 +58,7 @@ const handleSearch = async (req, res) => {
         res.json({
             status: "success",
             status_code: 200,
-            result: "please enter something to search",
+            message: "please enter something to search",
 
         });
 
@@ -66,5 +66,7 @@ const handleSearch = async (req, res) => {
 
 
 }
+
+
 
 module.exports = { handleSearch, ShowItemsByCategory }
