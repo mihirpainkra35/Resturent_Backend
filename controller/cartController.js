@@ -50,9 +50,10 @@ const HandleCart = async (req, res) => {
 
 }
 const HandleCartOrder = async (req, res) => {
-    // const Customer_id = req.query.Customer_id;
-    const Customer_id = req.query.Customer_id;
-    const data = await CartModel.find({ Customer_id });
+    
+    const Customer_id = req.query.Customer_id ;
+
+    const data = await CartModel.find({  Customer_id:Customer_id });
 
     res.status(200).json({
         status: "success",
