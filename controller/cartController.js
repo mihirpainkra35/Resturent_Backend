@@ -10,6 +10,7 @@ const HandleCart = async (req, res) => {
     const finditem = await CartModel.findOne({ Customer_id, item_Id });
 
 
+
     if (finditem) {
         const item = await CartModel.findOneAndUpdate({ Customer_id, item_Id }, { quantity })
 
@@ -22,7 +23,7 @@ const HandleCart = async (req, res) => {
 
     } else {
         const item = await menuModel.findById(req.body.item_Id)
-
+    
         let cartItem = {
             Customer_id,
             item_Id,
@@ -30,6 +31,7 @@ const HandleCart = async (req, res) => {
             Image_Url: item.Image_url,
             category: item.category,
             quantity,
+            price:item.price,
         }
         const addItem = CartModel(cartItem);
         const result = await addItem.save();
@@ -50,10 +52,10 @@ const HandleCart = async (req, res) => {
 
 }
 const HandleCartOrder = async (req, res) => {
-    
-    const Customer_id = req.query.Customer_id ;
 
-    const data = await CartModel.find({  Customer_id:Customer_id });
+    const Customer_id = req.query.Customer_id;
+
+    const data = await CartModel.find({ Customer_id: Customer_id });
 
     res.status(200).json({
         status: "success",
