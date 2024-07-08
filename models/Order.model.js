@@ -7,11 +7,7 @@ const OrderSchema = new mongoose.Schema({
         enum:["ordering","cooking","confirmed",""],
         default:"ordering"
     },
-    order:[{
-        itemId:String,
-        itemName:String,
-        itemQuantity:String,
-    }]
+    orders:[]
 })
 
 // const OrderModel = mongoose.model('Order', );

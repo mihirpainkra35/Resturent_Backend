@@ -1,10 +1,26 @@
 const OrderModel = require('../models/Order.model.js')
+const CartModel = require('../models/cart.model.js');
+
 const HandleOrder = async (req, res) => {
-    const metadata = req.body
-    console.log(metadata);
-    // const data = OrderModel(req.body);
-    // let result = await data.save();
-    res.send("data added in order table")
+    const Customer_id = req.body.Customer_id
+   
+    // console.log(Customer_id);
+    const item = await CartModel.find({Customer_id})
+    // console.log(item);
+    
+    const data = OrderModel({Customer_id,
+        orders:item,
+    });
+    let result = await data.save();
+    const ClearCart = await CartModel.deleteMany({Customer_id});
+    console.log(ClearCart);
+
+    res.status(200).json({
+        status: "success",
+        status_code: 200,
+        message: "Your Order will be serve soon....",
+
+    })
 
 }
 
