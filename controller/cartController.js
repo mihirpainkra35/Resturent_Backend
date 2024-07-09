@@ -74,15 +74,42 @@ const HandleQuantityInCart = async (req, res) => {
         },
         )
         res.status(200).json({
+            status: "success",
+            status_code: 200,
             message: "quantity has been updated"
         })
     } catch (error) {
         res.status(200).json({
+            status: "success",
+            status_code: 200,
             message: "there is no item with such id in the data"
         })
     }
 
 
 }
+const HandleDeletionOfItem = async (req, res) => {
 
-module.exports = { HandleCart, HandleCartOrder, HandleQuantityInCart }
+ try {
+    
+    const removeItemFromCart = await CartModel.findByIdAndDelete(req.body.id)
+ 
+    res.status(200).json({
+        status: "success",
+        status_code: 200,
+        message: "item deleted successfully",
+        DeletedItem: removeItemFromCart,
+    })
+
+ } catch (error) {
+    res.status(200).json({
+        status: "success",
+        status_code: 200,
+        message: "The item with such id is not exist in cart",
+      
+    })
+ }
+
+   
+}
+module.exports = { HandleCart, HandleCartOrder, HandleQuantityInCart, HandleDeletionOfItem }
