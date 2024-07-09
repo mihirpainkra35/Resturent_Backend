@@ -73,7 +73,8 @@ const HandleQuantityInCart = async (req, res) => {
 
     try {
         const item = await CartModel.findByIdAndUpdate(req.body.id, {
-            quantity: req.body.quantity
+            quantity: req.body.quantity,
+            price:req.body.price
         },
         )
         res.status(200).json({
