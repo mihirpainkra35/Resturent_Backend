@@ -23,7 +23,7 @@ const HandleCart = async (req, res) => {
 
     } else {
         const item = await menuModel.findById(req.body.item_Id)
-    
+
         let cartItem = {
             Customer_id,
             item_Id,
@@ -31,7 +31,7 @@ const HandleCart = async (req, res) => {
             Image_Url: item.Image_url,
             category: item.category,
             quantity,
-            price:item.price,
+            price: item.price,
         }
         const addItem = CartModel(cartItem);
         const result = await addItem.save();
@@ -66,5 +66,23 @@ const HandleCartOrder = async (req, res) => {
 
     })
 }
+const HandleQuantityInCart = async (req, res) => {
 
-module.exports = { HandleCart, HandleCartOrder }
+    try {
+        const item = await CartModel.findByIdAndUpdate(req.body.id, {
+            quantity: req.body.quantity
+        },
+        )
+        res.status(200).json({
+            message: "quantity has been updated"
+        })
+    } catch (error) {
+        res.status(200).json({
+            message: "there is no item with such id in the data"
+        })
+    }
+
+
+}
+
+module.exports = { HandleCart, HandleCartOrder, HandleQuantityInCart }

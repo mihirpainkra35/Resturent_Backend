@@ -4,16 +4,16 @@ const CartModel = require('../models/cart.model.js');
 const HandleOrder = async (req, res) => {
     const Customer_id = req.body.Customer_id
    
-    // console.log(Customer_id);
+
     const item = await CartModel.find({Customer_id})
-    // console.log(item);
+
     
     const data = OrderModel({Customer_id,
         orders:item,
     });
     let result = await data.save();
     const ClearCart = await CartModel.deleteMany({Customer_id});
-    console.log(ClearCart);
+    
 
     res.status(200).json({
         status: "success",
